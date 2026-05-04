@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Portfólio Maria - Enrolados ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0710;
+            color: #f5f0ff;
+            line-height: 1.5;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .lights-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .light {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(255,215,0,0.8), rgba(255,160,0,0.3));
+            border-radius: 50%;
+            box-shadow: 0 0 20px 4px rgba(255,215,0,0.6);
+            animation: floatLight 8s infinite alternate ease-in-out;
+            opacity: 0.6;
+        }
+
+        .light:nth-child(odd) {
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffdf80, #ffb347);
+            box-shadow: 0 0 25px 8px #ffcf4a;
+        }
+
+        @keyframes floatLight {
+            0% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.4; }
+            100% { transform: translateY(-80px) translateX(40px) scale(1.2); opacity: 0.9; }
+        }
+
+        .floating-signature {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            color: rgba(233, 197, 107, 0.8);
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            padding: 8px 18px;
+            border-radius: 40px;
+            z-index: 10;
+            pointer-events: none;
+            border-left: 3px solid #eac56b;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.3rem;
+            background: linear-gradient(135deg, #F5E6B2, #E6C87A, #CFB56B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .greeting {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            color: #eac56b;
+        }
+
+        .lantern-icon {
+            font-size: 2rem;
+            animation: sway 3s infinite alternate;
+            display: inline-block;
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
+
+        .subjects-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .subject-card {
+            background: rgba(30, 25, 55, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(230, 200, 120, 0.4);
+            border-radius: 2rem;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #ffefcf;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(233, 197, 107, 0.5);
+        }
+
+        .subject-card.active {
+            background: linear-gradient(135deg, #4a2f6d, #2c1b46);
+            border-color: #ffdd99;
+            box-shadow: 0 0 15px rgba(255,200,100,0.4);
+        }
+
+        .content-section {
+            background: rgba(15, 12, 28, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            border: 1px solid rgba(218, 185, 90, 0.3);
+            padding: 2rem;
+        }
+
+        .aula-item {
+            background: rgba(0,0,0,0.4);
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #eac56b;
+            transition: 0.2s;
+        }
+
+        .aula-item:hover {
+            background: rgba(30, 25, 55, 0.5);
+            transform: translateX(5px);
+        }
+
+        .aula-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+
+        .aula-nome {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffefcf;
+        }
+
+        .links-container {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .btn-link {
+            background: #2a203f;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            color: #ffecb3;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .btn-link:hover {
+            background: #4d3670;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .codigo-pre {
+            background: #0c0a18;
+            border-radius: 1rem;
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #e6dfc7;
+            white-space: pre-wrap;
+            margin-top: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #8b7aa8;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2.2rem; }
+            .floating-signature { font-size: 0.7rem; bottom: 15px; left: 15px; }
+            .aula-nome { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="lights-background" id="lightsContainer"></div>
+
+<div class="floating-signature">
+    🕯️ "Enrolada nos códigos, mas sempre brilhando" ✨
+</div>
+
+<div class="container">
+    <div class="hero">
+        <div class="lantern-icon">🏮✨</div>
+        <h1>📜 Portfólio Maria - Enrolados</h1>
+        <div class="greeting">✨ Bem-vinda, <strong style="color:#ffdf80;">Maria</strong>! ✨</div>
+        <p>Meus códigos, projetos e aprendizados — tudo organizado com magia e propósito.</p>
+    </div>
+
+    <div class="subjects-grid" id="subjectsGrid"></div>
+
+    <div class="content-section" id="contentArea">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem;" id="dynamicTitle">
+            <i class="fas fa-code"></i> <span style="font-size: 1.8rem; font-weight: bold;">Selecione uma matéria</span>
+        </div>
+        <div id="aulasContainer"></div>
+    </div>
+    <footer>
+        <i class="fas fa-crown"></i> Cada link é uma conquista • Portfólio único e pessoal ✨
+    </footer>
+</div>
+
+<script>
+    // ============================================================
+    // TODOS OS SEUS LINKS ORGANIZADOS POR MATÉRIA
+    // ============================================================
+    const aulasData = {
+        "analise": {
+            nomeExibicao: "Análise 📊",
+            icone: "fas fa-chart-line",
+            aulas: [
+                { 
+                    nome: "📄 Agenda Escolar Digital", 
+                    descricao: "Documento Gamma - Planejamento e organização escolar",
+                    links: [
+                        { nome: "📖 Ver documento", url: "https://gamma.app/docs/Agenda-Escolar-Digital-eecx4lgl6d43c8i?mode=doc" }
+                    ]
+                },
+                { 
+                    nome: "🏛️ Propriedade Intelectual", 
+                    descricao: "Protegendo a Inovação e a Criatividade",
+                    links: [
+                        { nome: "📖 Ver documento", url: "https://gamma.app/docs/O-Universo-da-Propriedade-Intelectual-Protegendo-a-Inovacao-e-a-C-81yhzqzlh6ygpji?mode=doc" }
+                    ]
+                },
+                { 
+                    nome: "🚀 Ecossistema de Startups 2026", 
+                    descricao: "A Nova Era dos Unicórnios Latino-Americanos",
+                    links: [
+                        { nome: "📖 Ver documento", url: "https://gamma.app/docs/Ecossistema-de-Startups-2026-A-Nova-Era-dos-Unicornios-Latino-Ame-rrlvid92y60z8at" }
+                    ]
+                }
+            ]
+        },
+        "javascript": {
+            nomeExibicao: "JavaScript 💛",
+            icone: "fab fa-js",
+            aulas: [
+                { 
+                    nome: "📦 Variáveis em JavaScript", 
+                    descricao: "Estudo sobre variáveis e tipos de dados",
+                    links: [
+                        { nome: "🐙 GitHub - Variáveis", url: "https://github.com/maria-off/variaveis" }
+                    ]
+                },
+                { 
+                    nome: "🔄 Estrutura de Repetição - For", 
+                    descricao: "Usando laços de repetição em JS",
+                    links: [
+                        { nome: "🐙 GitHub - Usando For", url: "https://github.com/maria-off/Usando-For" }
+                    ]
+                },
+                { 
+                    nome: "⏸️ Break e Continue", 
+                    descricao: "Controle de fluxo em loops",
+                    links: [
+                        { nome: "🐙 GitHub - Break/Continue", url: "https://github.com/maria-off/breake-continue" }
+                    ]
+                },
+                { 
+                    nome: "🔍 Filtra", 
+                    descricao: "Método filter em JavaScript",
+                    links: [
+                        { nome: "🐙 GitHub - Filtra", url: "https://github.com/maria-off/filtra" }
+                    ]
+                }
+            ]
+        },
+        "algoritmos": {
+            nomeExibicao: "Algoritmos ⚙️",
+            icone: "fas fa-code-branch",
+            aulas: [
+                { 
+                    nome: "🔄 Selection Sort", 
+                    descricao: "Algoritmo de ordenação Selection Sort",
+                    links: [
+                        { nome: "🐙 GitHub - SelectionSort", url: "https://github.com/maria-off/SelectionSort" }
+                    ]
+                },
+                { 
+                    nome: "📊 Ordenados", 
+                    descricao: "Estudo sobre algoritmos de ordenação",
+                    links: [
+                        { nome: "🐙 GitHub - Ordenados", url: "https://github.com/maria-off/ordenados" }
+                    ]
+                }
+            ]
+        },
+        "html-projetos": {
+            nomeExibicao: "HTML & Projetos 🌐",
+            icone: "fab fa-html5",
+            aulas: [
+                { 
+                    nome: "🧪 Teste 1 - Projeto GitHub Pages", 
+                    descricao: "Primeiro deploy de teste",
+                    links: [
+                        { nome: "🌍 Acessar projeto", url: "https://maria-off.github.io/teste/teste.html" }
+                    ]
+                },
+                { 
+                    nome: "📅 Terceirão 2026", 
+                    descricao: "Projeto da turma do Terceirão",
+                    links: [
+                        { nome: "🌍 Acessar projeto", url: "https://maria-off.github.io/Terceir-o-2026/teste.html" }
+                    ]
+                }
+            ]
+        }
+    };
+
+    function buildSubjects() {
+        const grid = document.getElementById('subjectsGrid');
+        grid.innerHTML = '';
+        for (let [key, value] of Object.entries(aulasData)) {
+            const card = document.createElement('div');
+            card.className = 'subject-card';
+            card.setAttribute('data-subject', key);
+            card.innerHTML = `<i class="${value.icone}"></i> <span>${value.nomeExibicao}</span>`;
+            card.addEventListener('click', () => selectSubject(key));
+            grid.appendChild(card);
+        }
+        if (Object.keys(aulasData).length > 0) {
+            selectSubject(Object.keys(aulasData)[0]);
+        }
+    }
+
+    function selectSubject(subjectKey) {
+        const cards = document.querySelectorAll('.subject-card');
+        cards.forEach(card => {
+            if (card.getAttribute('data-subject') === subjectKey) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+
+        const materia = aulasData[subjectKey];
+        if (!materia) return;
+
+        const titleDiv = document.getElementById('dynamicTitle');
+        titleDiv.innerHTML = `<i class="${materia.icone}"></i> <span style="font-size: 1.8rem; font-weight: bold;">${materia.nomeExibicao} · Materiais e Links</span>`;
+
+        const aulasArray = materia.aulas;
+        const container = document.getElementById('aulasContainer');
+        
+        if (!aulasArray || aulasArray.length === 0) {
+            container.innerHTML = `<div style="text-align:center; padding:2rem;">✨ Nenhum material adicionado ainda. ✨</div>`;
+            return;
+        }
+
+        let html = ``;
+        for (let aula of aulasArray) {
+            let linksHtml = '';
+            if (aula.links && aula.links.length) {
+                linksHtml = `<div class="links-container">`;
+                for (let link of aula.links) {
+                    linksHtml += `<a href="${link.url}" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> ${link.nome}</a>`;
+                }
+                linksHtml += `</div>`;
+            }
+            
+            html += `
+                <div class="aula-item">
+                    <div class="aula-header">
+                        <div class="aula-nome">${aula.nome}</div>
+                    </div>
+                    <div style="color: #b9ad8f; font-size: 0.9rem; margin-bottom: 8px;">📌 ${aula.descricao || 'Material de estudo'}</div>
+                    ${linksHtml}
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    // ========= LUZES DE FUNDO ==========
+    function createLights() {
+        const containerLights = document.getElementById('lightsContainer');
+        const numLights = 55;
+        for (let i = 0; i < numLights; i++) {
+            const light = document.createElement('div');
+            light.classList.add('light');
+            light.style.left = `${Math.random() * 100}%`;
+            light.style.top = `${Math.random() * 100}%`;
+            light.style.animationDuration = `${5 + Math.random() * 8}s`;
+            light.style.animationDelay = `${Math.random() * 5}s`;
+            const size = 5 + Math.random() * 12;
+            light.style.width = `${size}px`;
+            light.style.height = `${size}px`;
+            containerLights.appendChild(light);
+        }
+    }
+
+    // Inicialização
+    createLights();
+    buildSubjects();
+</script>
+</body>
+</html>
